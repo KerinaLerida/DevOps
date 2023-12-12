@@ -1,0 +1,35 @@
+version: "3"
+services:
+  ansible:
+    build:
+      context: .
+      dockerfile: ansible-dockerfile
+    networks:
+      - my_network
+    volumes:
+      - ./../:/ansible_project
+
+  elastic:
+    build:
+      context: .
+      dockerfile: ubuntu-dockerfile
+    networks:
+      - my_network
+
+  app-dev:
+    build:
+      context: .
+      dockerfile: ubuntu-dockerfile
+    networks:
+      - my_network
+
+  app-prod:
+    build:
+      context: .
+      dockerfile: ubuntu-dockerfile
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

@@ -1,0 +1,10 @@
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt-get install -y openssh-server && \
+    mkdir -p /run/sshd
+
+COPY id_rsa.pub /root/.ssh/authorized_keys
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
